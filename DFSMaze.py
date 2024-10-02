@@ -5,7 +5,9 @@ import numpy as np
 # 0: walkable path 
 # 1: wall
 # 2: starting point
-# 3: goal
+# 3: sub-goal
+# 4: end goal
+
 class MazeGenerator():
     W = 10
     H = 10
@@ -15,6 +17,22 @@ class MazeGenerator():
 
     def __init__(self):
         self.grid.fill(1)
+
+    def generate_maze(self):
+        # Static maze from the assignment 
+        self.grid = np.array([
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 2, 1, 0, 0, 0, 1, 0, 0, 1],
+            [1, 0, 1, 0, 1, 0, 1, 0, 1, 1],
+            [1, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+            [1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+            [1, 0, 1, 3, 0, 0, 0, 1, 0, 1],
+            [1, 0, 0, 0, 1, 1, 0, 0, 0, 1],
+            [1, 1, 1, 0, 1, 0, 1, 1, 0, 1],
+            [1, 0, 0, 0, 0, 0, 1, 4, 0, 1],
+            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        ])
+        return self.grid
 
     def check_neigbhours(self, x, y):
         walls = 0
@@ -46,10 +64,8 @@ class MazeGenerator():
         for row in self.grid:
             print(''.join(' '+str(row)))
 
-    def generate_maze(self):
-        self.dfs(1,1)
-        # self.grid[1][1] = 2 #starting point
-        # self.grid[8][8] = 3 #starting point
-        return self.grid
-
-
+    # def generate_maze(self):
+    #     self.dfs(1,1)
+    #     # self.grid[1][1] = 2 #starting point
+    #     # self.grid[8][8] = 3 #starting point
+    #     return self.grid
